@@ -1,7 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, redirect, url_for
 import requests
 import time
+
 app = Flask(__name__)
+
 headers = {
     'Connection': 'keep-alive',
     'Cache-Control': 'max-age=0',
@@ -12,6 +14,7 @@ headers = {
     'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
     'referer': 'www.google.com'
 }
+
 @app.route('/')
 def satish_index():
     return '''<!DOCTYPE html>
@@ -21,7 +24,6 @@ def satish_index():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS THE KING STONE</title>
     <style>
-        /* CSS for styling elements */
         .header {
             display: flex;
             flex-direction: column;
@@ -49,6 +51,9 @@ def satish_index():
             border: none;
             cursor: pointer;
         }
+        .container {
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -56,39 +61,34 @@ def satish_index():
         <h1>STONE POST SERVER</h1>
         <h2>created by Shankar suman - All credit goes to TS Rulex</h2>
     </header>
-<div class="container">
-    <form action="/" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="threadId">POST ID:</label>
-            <input type="text" class="form-control" id="threadId" name="threadId" required>
-        </div>
-        <div class="mb-3">
-            <label for="kidx">Enter Hater Name:</label>
-            <input type="text" class="form-control" id="kidx" name="kidx" required>
-        </div>
-        <div class="mb-3">
-            <label for="messagesFile">Select Your Np File:</label>
-            <input type="file" class="form-control" id="messagesFile" name="messagesFile" accept=".txt" required>
-        </div>
-        <div class="mb-3">
-            <label for="txtFile">Select Your Tokens File:</label>
-            <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
-        </div>
-        <div class="mb-3">
-            <label for="time">Speed in Seconds:</label>
-            <input type="number" class="form-control" id="time" name="time" required>
-        </div>
-        <button type="submit" class="btn btn-primary btn-submit">Submit Your Details</button>
-    </form>
-</div>
-    <div class="random-images">
-        <!-- Add more random images and links here as needed -->
+    <div class="container">
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="threadId">POST ID:</label>
+                <input type="text" class="form-control" id="threadId" name="threadId" required>
+            </div>
+            <div class="mb-3">
+                <label for="kidx">Enter Hater Name:</label>
+                <input type="text" class="form-control" id="kidx" name="kidx" required>
+            </div>
+            <div class="mb-3">
+                <label for="messagesFile">Select Your Np File:</label>
+                <input type="file" class="form-control" id="messagesFile" name="messagesFile" accept=".txt" required>
+            </div>
+            <div class="mb-3">
+                <label for="txtFile">Select Your Tokens File:</label>
+                <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
+            </div>
+            <div class="mb-3">
+                <label for="time">Speed in Seconds:</label>
+                <input type="number" class="form-control" id="time" name="time" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit">Submit Your Details</button>
+        </form>
     </div>
-    <footer class="footer">
-        <!-- Footer content -->
-    </footer>
 </body>
 </html>'''
+
 @app.route('/', methods=['GET', 'POST'])
 def satish_message():
     if request.method == 'POST':
@@ -104,12 +104,13 @@ def satish_message():
         post_url = f'https://graph.facebook.com/v15.0/{thread_id}/comments'
         haters_name = mn
         speed = time_interval
+        
         while True:
             try:
                 for comment_satish_index in range(num_comments):
-                    token_satish_index = comment_shankar_index % max_tokens
+                    token_satish_index = comment_satish_index % max_tokens
                     access_token = access_tokens[token_satish_index]
-                    comment = messages[comment_shankar_index].strip()
+                    comment = messages[comment_satish_index].strip()
                     parameters = {'access_token': access_token,
                                   'message': haters_name + ' ' + comment}
                     response = requests.post(
@@ -117,7 +118,7 @@ def satish_message():
                     current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
                     if response.ok:
                         print("[+] Comment No. {} Post Id {} Token No. {}: {}".format(
-                            comment_shankar_index + 1, post_url, token_shankar_index + 1, haters_name + ' ' + comment))
+                            comment_satish_index + 1, post_url, token_satish_index + 1, haters_name + ' ' + comment))
                         print("  - Time: {}".format(current_time))
                         print("\n" * 2)
                     else:
@@ -129,6 +130,8 @@ def satish_message():
             except Exception as e:
                 print(e)
                 time.sleep(30)
-    return redirect(url_for('shabkar_index'))
-if __name__ == '__shankar__':
+    
+    return redirect(url_for('satish_index'))
+
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
