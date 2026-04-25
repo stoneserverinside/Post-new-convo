@@ -19,7 +19,7 @@ def satish_index():
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TS Rulex</title>
+    <title>TS THE KING STONE</title>
     <style>
         /* CSS for styling elements */
         .header {
@@ -53,7 +53,7 @@ def satish_index():
 </head>
 <body>
     <header class="header">
-        <h1>SHANKAR POST SERVER</h1>
+        <h1>STONE POST SERVER</h1>
         <h2>created by Shankar suman - All credit goes to TS Rulex</h2>
     </header>
 <div class="container">
